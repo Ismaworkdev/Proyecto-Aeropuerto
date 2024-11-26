@@ -9,7 +9,7 @@ function conexion()
 {
     global $pdo;
     try {
-        $pdo = new PDO('mysql:host=localhost:3307;dbname=proyecto-aeropuerto', 'root', '');
+        $pdo = new PDO('mysql:host=localhost:3306;dbname=proyecto-aeropuerto', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec('SET NAMES "utf8"');
     } catch (PDOException $e) {
@@ -32,6 +32,12 @@ function comprobaruser($user, $password)
         if ($stmt->rowCount() > 0) {
             echo "El usuario $user existe.";
             $erro = false;
+            if ($user == "admin") {
+                header("Location:Vistaadmin/admin.php");
+            } else {
+
+                header("Location:Vistauser/user.php");
+            }
         } else {
             echo "El usuario $user no existe.";
             $erro = true;
