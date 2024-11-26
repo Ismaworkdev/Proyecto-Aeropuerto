@@ -11,8 +11,11 @@
 	<link rel="stylesheet" type="text/css" href="./Pagina/css/my-login.css">
 </head>
 <?php
+
 include('./funciones/funciones_bd.php');
+include('./funciones/funciones.php');
 ?>
+
 
 <body class="my-login-page">
 	<br>
