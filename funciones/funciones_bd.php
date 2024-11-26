@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 <?php
 
 
 session_start();
-
+$erro = false;
 $pdo;
 function conexion()
 {
@@ -22,6 +22,7 @@ conexion();
 function comprobaruser($user, $password)
 {
     global $pdo;
+    global $erro;
     try {
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nombre = :user AND contraseña = :password");
         $stmt->bindParam(':user', $user);
@@ -30,12 +31,21 @@ function comprobaruser($user, $password)
 
         if ($stmt->rowCount() > 0) {
             echo "El usuario $user existe.";
+            $erro = false;
         } else {
             echo "El usuario $user no existe.";
+            $erro = true;
         }
     } catch (PDOException $e) {
         echo 'Error en la consulta: ' . $e->getMessage();
     }
 }
-=======
->>>>>>> 350cbeac4f31d825c24ac0c0fe67b01c2fc09763
+function mostrarerroresuser()
+{
+    global $erro;
+    if ($erro == false) {
+        print "   <span class='error'>  </span>";
+    } else {
+        print "   <span class='error'>  Usuario iniexistente  . </span>";
+    }
+};

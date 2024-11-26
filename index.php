@@ -6,6 +6,7 @@
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>My Login Page</title>
+	<link rel="stylesheet" href="./Pagina/css/my-login.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="./Pagina/css/my-login.css">
@@ -37,7 +38,10 @@ include('./funciones/funciones.php');
 									<label for="user">Usuario </label>
 									<input id="user" type="text" class="form-control" name="user" required autofocus>
 								</div>
-
+								<?php
+								mostrarerrores();
+								mostrarerroresuser();
+								?>
 								<div class="form-group">
 									<label for="password">Contraseña
 										<a href="forgot.html" class="float-right">
