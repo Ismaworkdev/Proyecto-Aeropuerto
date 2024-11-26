@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 
@@ -36,3 +37,5 @@ function comprobaruser($user, $password)
         echo 'Error en la consulta: ' . $e->getMessage();
     }
 }
+=======
+>>>>>>> 350cbeac4f31d825c24ac0c0fe67b01c2fc09763

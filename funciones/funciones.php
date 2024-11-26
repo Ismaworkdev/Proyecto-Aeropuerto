@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 function comprobarpost()
 {
@@ -9,3 +10,7 @@ function comprobarpost()
     }
 }
 comprobarpost();
+=======
+include('./Funciones/funciones_bd.php');
+session_start();
+>>>>>>> 350cbeac4f31d825c24ac0c0fe67b01c2fc09763
