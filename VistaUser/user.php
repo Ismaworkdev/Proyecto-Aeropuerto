@@ -5,21 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Pagina/css/my-login.css">
 </head>
 
 <body class="bg-light">
-    <header class="text-center py-4 bg-white shadow-sm">
+    <header class="text-white text-center py-4 mb-4" style="background-color: rgba(117, 149, 252, 255);">
         <div class="container">
             <img src="../img/logo.png" alt="Logo" class="img-fluid mb-3 rounded-circle" style="max-width: 150px;">
             <h1 class="h4">Bienvenido, <span id="user-name">Usuario</span></h1>
-            <h2 class="h6 text-muted">Correo: <span id="user-email">usuario@gmail.com</span></h2>
-            <p class="text-secondary">Rol: Usuario</p>
+            <h2 class="h6">Correo: <span id="user-email">usuario@gmail.com</span></h2>
+            <p class="">Rol: Usuario</p>
         </div>
+
+        <nav class="nav__cambio">
+            <ul class="ul__cambio">
+                <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioUsuario.html">Cambiar email</a></li>
+            </ul>
+            <ul class="ul__cambio">
+                <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioContraseña.html">Cambiar contraseña</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main class="container my-5">
         <div class="row">
-            <!-- Vuelos Reservados -->
+            <!-- Vuelos Reservados  git fetch origin git merge origin/main-->
             <div class="col-md-6">
                 <div class="card" style="border: 2px solid rgba(117, 149, 252, 255);">
                     <div class="card-header" style="background-color: rgba(117, 149, 252, 255); color: white;">

@@ -81,3 +81,28 @@ body.my-login-page {
 		padding: 15px;
 	}
 }
+
+.nav__cambio{
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.li__cambio{
+	list-style: none;
+}
+
+.button__cambio{
+	text-decoration: none;
+	color: white;
+	border: 1px solid white;
+	background-color: black;
+	width: 180px;
+	padding: 10px;
+}
+
+.button__cambio:hover{
+	
+}
+
+

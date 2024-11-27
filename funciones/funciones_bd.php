@@ -55,3 +55,5 @@ function mostrarerroresuser()
         print "   <span class='error'>  Usuario iniexistente  . </span>";
     }
 };
+
+function insertuser($user, $password) {}

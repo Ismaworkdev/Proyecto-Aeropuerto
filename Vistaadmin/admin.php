@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Aerolíneas Admin">
     <title>Panel de Administrador - Vuelos</title>
+    <link rel="stylesheet" href="../Pagina/css/my-login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
@@ -17,6 +18,15 @@
                 <img src="../img/logo.png" alt="Logo" class="img-fluid mb-3" style="max-width: 150px;">
                 <h1 class="h3 mb-2">Bienvenido, Administrador</h1>
                 <h2 class="h5">Panel de Gestión de Vuelos</h2>
+                
+                <nav class="nav__cambio">
+                    <ul class="ul__cambio">
+                        <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioUsuario.html">Cambiar email</a></li>
+                    </ul>
+                    <ul class="ul__cambio">
+                        <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioContraseña.html">Cambiar contraseña</a></li>
+                    </ul>
+                </nav>
             </header>
 
             <!-- Form Sections -->
