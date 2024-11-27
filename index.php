@@ -56,7 +56,7 @@ include('./funciones/funciones.php');
 									</button>
 								</div>
 								<div class="mt-4 text-center">
-									¿No tienes usuario? <a href="register.html">Crear usuario</a>
+									¿No tienes usuario? <a href="./Pagina/register.php">Crear usuario</a>
 								</div>
 							</form>
 						</div>
