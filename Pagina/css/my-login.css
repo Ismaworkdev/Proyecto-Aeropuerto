@@ -94,15 +94,19 @@ body.my-login-page {
 
 .button__cambio{
 	text-decoration: none;
-	color: white;
+	color: black;
 	border: 1px solid white;
-	background-color: black;
+	background-color: white;
 	width: 180px;
 	padding: 10px;
+	border-radius: 5px;
 }
 
 .button__cambio:hover{
-	
+	text-decoration: none;
+	color: rgba(117, 149, 252, 255);
+	border-radius: 5px;
+
 }
 
 
