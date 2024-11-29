@@ -1,3 +1,42 @@
+<?php
+    session_start();
+
+    include("../funciones/funciones_bd1.php");
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $usuarioActual = $_POST['usuario_actual'];
+        $contrasena = $_POST['contrasena'];
+        $nuevoUsuario = $_POST['nuevo_usuario'];
+        $repetirUsuario = $_POST['repetir_usuario'];
+    
+        if ($nuevoUsuario === $repetirUsuario) {
+            if (cambiarUsuario($usuarioActual, $contrasena, $nuevoUsuario)) {
+                $_SESSION['exito'] = "Nombre de usuario cambiado con éxito.";
+                header('Location: usuarioActualizado.php');
+                exit;
+            } else {
+                $_SESSION['error'] = 'El usuario actual o la contraseña son incorrectos.';
+                header('Location: cambioUsuario.php');
+                exit;
+            }
+        } else {
+            $_SESSION['error'] = 'Los nuevos nombres de usuario no coinciden.';
+            header('Location: cambioUsuario.php');
+            exit;
+        }
+    }
+?>
+
+<?php
+     if (isset($_SESSION['error'])) {
+        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
+        unset($_SESSION['error']);
+    }               
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,11 +48,9 @@
 <body>
     <div class="container mt-5">
         <div class="row">
-            <!-- Sección del formulario -->
             <div class="col-md-6">
                 <h2 class="mb-4">Cambiar Usuario</h2>
-                <form action="comprobarCambioUsuario.php" method="POST" class="needs-validation" novalidate>
-                    <!-- Usuario Actual -->
+                <form action="" method="POST" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="usuarioActual" class="form-label">Usuario Actual</label>
                         <input type="text" class="form-control" id="usuarioActual" name="usuario_actual" required>
@@ -21,7 +58,10 @@
                             Por favor, ingresa tu usuario actual.
                         </div>
                     </div>
-                    <!-- Nuevo Usuario -->
+                    <div class="mb-3">
+                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                    </div>
                     <div class="mb-3">
                         <label for="nuevoUsuario" class="form-label">Nuevo Usuario</label>
                         <input type="text" class="form-control" id="nuevoUsuario" name="nuevo_usuario" required>
@@ -29,7 +69,6 @@
                             Por favor, ingresa un nuevo nombre de usuario.
                         </div>
                     </div>
-                    <!-- Repetir Nuevo Usuario -->
                     <div class="mb-3">
                         <label for="repetirUsuario" class="form-label">Repetir Nuevo Usuario</label>
                         <input type="text" class="form-control" id="repetirUsuario" name="repetir_usuario" required>
@@ -37,12 +76,10 @@
                             Por favor, repite el nuevo nombre de usuario.
                         </div>
                     </div>
-                    <!-- Botón de Enviar -->
                     <button type="submit" class="btn" style="background-color: rgba(117, 149, 252, 255); color:white">Cambiar Usuario</button>
                 </form>
             </div>
 
-            <!-- Sección de la imagen -->
             <div class="col-md-6 d-flex align-items-center justify-content-center">
                 <img src="../img/logo.png" alt="Imagen de seguridad" class="img-fluid rounded" style="width: 500px;">
             </div>

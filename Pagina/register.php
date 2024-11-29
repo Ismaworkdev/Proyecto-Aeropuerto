@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include('../funciones/funciones_bd1.php');
 
@@ -8,23 +9,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['passwd']);
 
     if (strlen($nombre) > 10) {
-        echo "<div class='alert alert-danger'>El nombre no puede superar los 10 caracteres.</div>";
+        $_SESSION['error'] = "El nombre no puede superar los 10 caracteres.";
+        header("Location: register.php");
+        exit();
     } elseif (strlen($password) > 10) {
-        echo "<div class='alert alert-danger'>La contraseña no puede superar los 10 caracteres.</div>";
+        $_SESSION['error'] = "La contraseña no puede superar los 10 caracteres.";
+        header("Location: register.php");
+        exit();
     } elseif (!empty($nombre) && !empty($correo) && !empty($password)) {
         if (insertuser($nombre, $correo, $password)) {
-            echo "<div class='alert alert-success'>Usuario registrado exitosamente.</div>";
-
-			header("Location: usuarioRegistrado.php"); 
+            $_SESSION['success'] = "Usuario registrado exitosamente.";
+            header("Location: usuarioRegistrado.php");
             exit();
         } else {
-            echo "<div class='alert alert-danger'>Error al registrar el usuario.</div>";
+            $_SESSION['error'] = "Error al registrar el usuario.";
+            header("Location: register.php");
+            exit();
         }
     } else {
-        echo "<div class='alert alert-danger'>Por favor, completa todos los campos.</div>";
+        $_SESSION['error'] = "Por favor, completa todos los campos.";
+        header("Location: register.php");
+        exit();
     }
 }
+?>
 
+<?php
+    if (isset($_SESSION['error'])) {
+        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
+        unset($_SESSION['error']);
+    }
 ?>
 
 <!DOCTYPE html>

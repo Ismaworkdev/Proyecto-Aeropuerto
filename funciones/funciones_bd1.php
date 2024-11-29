@@ -73,4 +73,27 @@ function cambiarContrasena($usuario, $contrasenaAntigua, $nuevaContrasena) {
 
     return false;
 }
+
+
+function cambiarUsuario($usuarioAntiguo, $contrasena, $usuarioNuevo) {
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nombre = :usuarioAntiguo");
+    $stmt->bindParam(':usuarioAntiguo', $usuarioAntiguo);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+        $usuarioData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuarioData['contraseña'] === $contrasena) {
+            $updateStmt = $pdo->prepare("UPDATE usuarios SET nombre = :usuarioNuevo WHERE nombre = :usuarioAntiguo");
+            $updateStmt->bindParam(':usuarioNuevo', $usuarioNuevo);
+            $updateStmt->bindParam(':usuarioAntiguo', $usuarioAntiguo);
+            $updateStmt->execute();
+            return true;
+        }
+    }
+
+    return false;
+}
 ?>
