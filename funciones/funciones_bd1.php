@@ -49,4 +49,28 @@ function insertuser($nombre, $correo, $password) {
     }
 }
 
+
+
+function cambiarContrasena($usuario, $contrasenaAntigua, $nuevaContrasena) {
+    global $pdo; 
+
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nombre = :usuario");
+    $stmt->bindParam(':usuario', $usuario);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+        $usuarioData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuarioData['contraseña'] === $contrasenaAntigua) {
+            $updateStmt = $pdo->prepare("UPDATE usuarios SET contraseña = :nueva_contrasena WHERE nombre = :usuario");
+            $updateStmt->bindParam(':nueva_contrasena', $nuevaContrasena);
+            $updateStmt->bindParam(':usuario', $usuario);
+            $updateStmt->execute();
+
+            return true;
+        }
+    }
+
+    return false;
+}
 ?>

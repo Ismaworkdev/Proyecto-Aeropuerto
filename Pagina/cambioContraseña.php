@@ -1,3 +1,40 @@
+<?php
+    include("../funciones/funciones_bd1.php");
+
+    session_start();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $usuarioAntiguo = $_POST['usuario_antiguo'];
+        $contrasenaAntigua = $_POST['contrasena_antigua'];
+        $nuevaContrasena = $_POST['nueva_contrasena'];
+        $repetirContrasena = $_POST['repetir_contrasena'];
+
+        if ($nuevaContrasena !== $repetirContrasena) {
+            $_SESSION['error'] = "Las contraseñas no coinciden.";
+            header('Location: cambioContraseña.php'); 
+            exit;
+        }
+
+        $resultado = cambiarContrasena($usuarioAntiguo, $contrasenaAntigua, $nuevaContrasena);
+        
+        if ($resultado) {
+            header('Location: contraseñaActualizada.php'); 
+            exit;
+        } else {
+            $_SESSION['error'] = "Usuario o contraseña incorrectos.";
+            header('Location: cambioContraseña.php'); 
+            exit;
+        }
+    }
+
+?>
+<?php
+    if (isset($_SESSION['error'])) {
+        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
+        unset($_SESSION['error']);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,40 +46,39 @@
 <body>
     <div class="container mt-5">
         <div class="row">
-            <!-- Sección del formulario -->
+
             <div class="col-md-6">
                 <h2 class="mb-4">Cambiar Contraseña</h2>
-                <form action="comprobarCambioContraseña.php" method="POST" class="needs-validation" novalidate>
-                    <!-- Contraseña Antigua -->
+                <form action="" method="POST" class="needs-validation" novalidate>
+                    
+                    <div class="mb-3">
+                        <label for="usuarioAntiguo" class="form-label">Usuario</label>
+                        <input type="user" class="form-control" id="usuarioAntiguo" name="usuario_antiguo" required>
+
+                    </div>
                     <div class="mb-3">
                         <label for="contrasenaAntigua" class="form-label">Contraseña Antigua</label>
                         <input type="password" class="form-control" id="contrasenaAntigua" name="contrasena_antigua" required>
-                        <div class="invalid-feedback">
-                            Por favor, ingresa tu contraseña antigua.
-                        </div>
+                        
                     </div>
-                    <!-- Nueva Contraseña -->
+                    
                     <div class="mb-3">
                         <label for="nuevaContrasena" class="form-label">Nueva Contraseña</label>
                         <input type="password" class="form-control" id="nuevaContrasena" name="nueva_contrasena" required>
-                        <div class="invalid-feedback">
-                            Por favor, ingresa una nueva contraseña.
-                        </div>
+                        
                     </div>
-                    <!-- Repetir Nueva Contraseña -->
+                   
                     <div class="mb-3">
                         <label for="repetirContrasena" class="form-label">Repetir Nueva Contraseña</label>
                         <input type="password" class="form-control" id="repetirContrasena" name="repetir_contrasena" required>
-                        <div class="invalid-feedback">
-                            Por favor, repite la nueva contraseña.
-                        </div>
+                        
                     </div>
-                    <!-- Botón de Enviar -->
+                    
                     <button type="submit" class="btn" style="background-color: rgba(117, 149, 252, 255); color: white;">Cambiar Contraseña</button>
                 </form>
             </div>
 
-            <!-- Sección de la imagen -->
+            
             <div class="col-md-6 d-flex align-items-center justify-content-center">
                 <img src="../img/logo.png" alt="Imagen de seguridad" class="img-fluid rounded" style="width: 550px;">
             </div>
