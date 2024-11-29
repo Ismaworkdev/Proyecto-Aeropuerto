@@ -30,25 +30,3 @@ function mostrarerrores()
     }
 };
 
-
-
-function registeruser()
-{
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["nom"]) && isset($_POST["passwd"]) && isset($_POST["gmail"])) {
-            $user = $_POST["nom"];
-            $password = $_POST["passwd"];
-            $gmail = $_POST["gmail"];
-            if (strlen($user) <= 10 && strlen($password) <= 10) {
-
-                $error = false;
-                echo "Bien";
-                header("Location:Vistaadmin/admin.php");
-            } else {
-                $error = true;
-                echo "El usuario y la contraseña no deben superar los 10 caracteres.";
-            }
-        }
-    }
-}
-registeruser();

@@ -21,10 +21,10 @@
                 
                 <nav class="nav__cambio">
                     <ul class="ul__cambio">
-                        <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioUsuario.html">Cambiar email</a></li>
+                        <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioUsuario.php">Cambiar email</a></li>
                     </ul>
                     <ul class="ul__cambio">
-                        <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioContraseña.html">Cambiar contraseña</a></li>
+                        <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioContraseña.php">Cambiar contraseña</a></li>
                     </ul>
                 </nav>
             </header>

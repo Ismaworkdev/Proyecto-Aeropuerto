@@ -56,4 +56,37 @@ function mostrarerroresuser()
     }
 };
 
-function insertuser($user, $password) {}
+
+function insertuser($nombre, $correo, $password) {
+    global $pdo;
+    
+    try {
+
+        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nombre = :nombre OR correo = :correo");
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->execute();
+        
+        if ($stmt->rowCount() > 0) {
+            echo "El usuario o correo ya están registrados.";
+            return false;
+        }
+
+        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, correo, contraseña) VALUES (:nombre, :correo, :password)");
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->bindParam(':password', $password);
+        
+        if ($stmt->execute()) {
+            echo "Usuario registrado exitosamente.";
+            return true;
+        } else {
+            echo "Error al registrar el usuario.";
+            return false;
+        }
+    } catch (PDOException $e) {
+        echo "Error en la consulta: " . $e->getMessage();
+        return false;
+    }
+}
+
