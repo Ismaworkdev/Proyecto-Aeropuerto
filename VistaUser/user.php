@@ -1,3 +1,7 @@
+<?php
+include("../funciones/funciones_bd1.php");
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,8 +16,8 @@
     <header class="text-white text-center py-4 mb-4" style="background-color: rgba(117, 149, 252, 255);">
         <div class="container">
             <img src="../img/logo.png" alt="Logo" class="img-fluid mb-3 rounded-circle" style="max-width: 150px;">
-            <h1 class="h4">Bienvenido, <span id="user-name">Usuario</span></h1>
-            <h2 class="h6">Correo: <span id="user-email">usuario@gmail.com</span></h2>
+            <h1 class="h4">Bienvenido, <span id="user-name" value=""><?php print $_SESSION["user"] ?></span></h1>
+            <h2 class="h6">Correo: <span id="user-email"></span></h2>
             <p class="">Rol: Usuario</p>
         </div>
 
