@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <form method="POST" class="my-login-validation" novalidate="">
                                 <div class="form-group">
                                     <label for="name">Nombre </label>
-                                    <input id="name" type="text" class="form-control" name="nom" required autofocus maxlength="10">
+                                    <input id="name" type="text" class="form-control" name="nom" required autofocus >
                                 </div>
 
                                 <div class="form-group">
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <div class="form-group">
                                     <label for="password">Contraseña</label>
-                                    <input id="password" type="password" class="form-control" name="passwd" required maxlength="10" data-eye>
+                                    <input id="password" type="password" class="form-control" name="passwd" required data-eye>
                                 </div>
 
                                 <div class="form-group m-0">
