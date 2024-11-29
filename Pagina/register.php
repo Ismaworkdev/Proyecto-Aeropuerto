@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Registro de Usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/my-login.css">
+	
 </head>
 <body class="my-login-page">
     <section class="h-100">
@@ -56,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <div class="form-group">
                                     <label for="email">Correo Electrónico</label>
-                                    <input id="email" type="email" class="form-control" name="gmail" required>
+                                    <input id="email" type="email" class="form-control" name="gmail" placeholder="ejemplo@dominio.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                                 </div>
 
                                 <div class="form-group">
@@ -65,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
 
                                 <div class="form-group m-0">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-primary btn-block registrar">
                                         Registrarse
                                     </button>
                                 </div>

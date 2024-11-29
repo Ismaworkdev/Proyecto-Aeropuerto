@@ -15,6 +15,7 @@ function conexion()
 
 conexion();
 
+
 function insertuser($nombre, $correo, $password) {
     global $pdo;
     
