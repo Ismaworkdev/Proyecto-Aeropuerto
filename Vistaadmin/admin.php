@@ -16,15 +16,15 @@
             <!-- Header -->
             <header class="text-white text-center py-4 mb-4" style="background-color: rgba(117, 149, 252, 255);">
                 <img src="../img/logo.png" alt="Logo" class="img-fluid mb-3" style="max-width: 150px;">
-                <h1 class="h3 mb-2">Bienvenido, Administrador</h1>
+                <h1 class="h3 mb-2">Bienvenido, <?php session_start();
+                                                print $_SESSION["user"] ?></h1>
                 <h2 class="h5">Panel de Gestión de Vuelos</h2>
-                
+
                 <nav class="nav__cambio">
-                    <ul class="ul__cambio">
-                        <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioUsuario.php">Cambiar usuario</a></li>
-                    </ul>
+
                     <ul class="ul__cambio">
                         <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioContraseña.php">Cambiar contraseña</a></li>
+
                     </ul>
                 </nav>
             </header>

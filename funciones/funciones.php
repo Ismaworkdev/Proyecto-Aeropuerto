@@ -12,6 +12,8 @@ function comprobarpost()
             if (strlen($user) <= 10 && strlen($password) <= 10) {
                 comprobaruser($user, $password);
                 $error = false;
+                $_SESSION["user"] = $_POST["user"];
+                $_SESSION["password"] = $_POST["password"];
             } else {
                 $error = true;
                 echo "El usuario y la contraseña no deben superar los 10 caracteres.";
@@ -29,4 +31,3 @@ function mostrarerrores()
         print "   <span class='error'>  Usuario o contraseña incorrectas . </span>";
     }
 };
-
