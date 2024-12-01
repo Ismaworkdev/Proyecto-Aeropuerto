@@ -4,8 +4,8 @@ include("../funciones/funciones_bd1.php");
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuarioAntiguo = $_POST['usuario_antiguo'];
-    $contrasenaAntigua = $_POST['contrasena_antigua'];
+    $usuarioAntiguo = $_POST['usu_actual'];
+    $gmail = $_POST['gmail'];
     $nuevaContrasena = $_POST['nueva_contrasena'];
     $repetirContrasena = $_POST['repetir_contrasena'];
 
@@ -15,25 +15,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $resultado = cambiarContrasena($usuarioAntiguo, $contrasenaAntigua, $nuevaContrasena);
+    $resultado = cambiarContrasena($usuarioAntiguo, $gmail, $nuevaContrasena);
 
     if ($resultado) {
         header('Location: contraseñaActualizada.php');
         exit;
     } else {
-        $_SESSION['error'] = "Usuario o contraseña incorrectos.";
+        $_SESSION['error'] = "Usuario o gmail incorrectos.";
         header('Location: cambioContraseña.php');
         exit;
     }
 }
-
-?>
-<?php
 if (isset($_SESSION['error'])) {
     echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
     unset($_SESSION['error']);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -55,12 +53,12 @@ if (isset($_SESSION['error'])) {
 
                     <div class="mb-3">
                         <label for="usuarioAntiguo" class="form-label">Usuario</label>
-                        <input type="user" class="form-control" id="usuarioAntiguo" name="usuario_antiguo" value="<?php print $_SESSION["user"] ?>" required>
+                        <input type="user" class="form-control" id="usuarioAntiguo" name="usu_actual" value="<?php print $_SESSION["user"] ?>" required>
 
                     </div>
                     <div class="mb-3">
-                        <label for="contrasenaAntigua" class="form-label">Contraseña Antigua</label>
-                        <input type="password" class="form-control" id="contrasenaAntigua" name="contrasena_antigua" required>
+                        <label for="gmail" class="form-label">Gmail Actual</label>
+                        <input type="email" class="form-control" id="gmail" name="gmail" required>
 
                     </div>
 

@@ -7,27 +7,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = trim($_POST['nom']);
     $correo = trim($_POST['gmail']);
     $password = trim($_POST['passwd']);
+    $rol = trim($_POST['rol']);
 
-    if (strlen($nombre) > 10) {
-        $_SESSION['error'] = "El nombre no puede superar los 10 caracteres.";
-        header("Location: register.php");
+    if (strlen($nombre) > 20 || strlen($password) > 20) {
+        $_SESSION['error'] = "El nombre o contraseña  no puede superar los 20 caracteres.";
+
         exit();
-    } elseif (strlen($password) > 10) {
-        $_SESSION['error'] = "La contraseña no puede superar los 10 caracteres.";
-        header("Location: register.php");
-        exit();
-    } elseif (!empty($nombre) && !empty($correo) && !empty($password)) {
-        if (insertuser($nombre, $correo, $password)) {
+    } elseif (!empty($nombre) && !empty($correo) && !empty($password) && filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+        if (insertuser($nombre, $correo, $password, $rol)) {
             $_SESSION['success'] = "Usuario registrado exitosamente.";
             header("Location: usuarioRegistrado.php");
             exit();
         } else {
-            $_SESSION['error'] = "Error al registrar el usuario.";
-            header("Location: register.php");
-            exit();
+            $_SESSION['error'] =  "El usuario o correo ya están registrados.";
         }
     } else {
-        $_SESSION['error'] = "Por favor, completa todos los campos.";
+        $_SESSION['error'] = "Por favor, completa todos los campos correctamente.";
         header("Location: register.php");
         exit();
     }
@@ -35,14 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php
-    if (isset($_SESSION['error'])) {
-        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
-        unset($_SESSION['error']);
-    }
+if (isset($_SESSION['error'])) {
+    echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
+    unset($_SESSION['error']);
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Kodinger">
@@ -50,8 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Registro de Usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/my-login.css">
-	
+
 </head>
+
 <body class="my-login-page">
     <section class="h-100">
         <div class="container h-100">
@@ -66,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <form method="POST" class="my-login-validation" novalidate="">
                                 <div class="form-group">
                                     <label for="name">Nombre </label>
-                                    <input id="name" type="text" class="form-control" name="nom" required autofocus >
+                                    <input id="name" type="text" class="form-control" name="nom" required autofocus>
                                 </div>
 
                                 <div class="form-group">
@@ -87,6 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="mt-4 text-center">
                                     ¿Ya tienes cuenta? <a href="../index.php">Iniciar sesión</a>
                                 </div>
+                                <input type="hidden" name="rol" value="B">
                             </form>
                         </div>
                     </div>
@@ -101,4 +99,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

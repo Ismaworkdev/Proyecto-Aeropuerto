@@ -9,7 +9,7 @@ function comprobarpost()
             $user = $_POST["user"];
             $password = $_POST["password"];
 
-            if (strlen($user) <= 10 && strlen($password) <= 10) {
+            if (strlen($user) <= 20 && strlen($password) <= 20) {
                 comprobaruser($user, $password);
                 $error = false;
                 $_SESSION["user"] = $_POST["user"];

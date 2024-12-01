@@ -9,7 +9,7 @@ function conexion()
 {
     global $pdo;
     try {
-        $pdo = new PDO('mysql:host=localhost:3306;dbname=proyecto-aeropuerto', 'root', '');
+        $pdo = new PDO('mysql:host=localhost:3307;dbname=proyecto-aeropuerto', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec('SET NAMES "utf8"');
     } catch (PDOException $e) {
@@ -30,9 +30,11 @@ function comprobaruser($user, $password)
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            echo "El usuario $user existe.";
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $rol = $row['rol'];
             $erro = false;
-            if ($user == "admin") {
+            if ($rol == 'A') {
                 header("Location:Vistaadmin/admin.php");
             } else {
 
@@ -57,16 +59,17 @@ function mostrarerroresuser()
 };
 
 
-function insertuser($nombre, $correo, $password) {
+function insertuser($nombre, $correo, $password)
+{
     global $pdo;
-    
+
     try {
 
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE nombre = :nombre OR correo = :correo");
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':correo', $correo);
         $stmt->execute();
-        
+
         if ($stmt->rowCount() > 0) {
             echo "El usuario o correo ya están registrados.";
             return false;
@@ -76,7 +79,7 @@ function insertuser($nombre, $correo, $password) {
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':correo', $correo);
         $stmt->bindParam(':password', $password);
-        
+
         if ($stmt->execute()) {
             echo "Usuario registrado exitosamente.";
             return true;
@@ -89,4 +92,3 @@ function insertuser($nombre, $correo, $password) {
         return false;
     }
 }
-

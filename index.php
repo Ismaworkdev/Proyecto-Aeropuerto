@@ -44,7 +44,7 @@ include('./funciones/funciones.php');
 								?>
 								<div class="form-group">
 									<label for="password">Contraseña
-										<a href="forgot.html" class="float-right">
+										<a href="./Pagina/cambioContraseña.php" class="float-right">
 											¿Olvidaste tu contraseña?
 										</a>
 									</label>

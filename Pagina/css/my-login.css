@@ -82,17 +82,17 @@ body.my-login-page {
 	}
 }
 
-.nav__cambio{
+.nav__cambio {
 	display: flex;
 	justify-content: center;
 	margin-top: 50px;
 }
 
-.li__cambio{
+.li__cambio {
 	list-style: none;
 }
 
-.button__cambio{
+.button__cambio {
 	text-decoration: none;
 	color: black;
 	border: 1px solid white;
@@ -102,7 +102,7 @@ body.my-login-page {
 	border-radius: 5px;
 }
 
-.button__cambio:hover{
+.button__cambio:hover {
 	text-decoration: none;
 	color: rgba(117, 149, 252, 255);
 	border-radius: 5px;
@@ -111,3 +111,16 @@ body.my-login-page {
 
 
 
+.custom-link {
+	text-decoration: none;
+	color: #007bff;
+}
+
+.custom-link:hover {
+	color: #0056b3;
+}
+
+.img_ac {
+	border-radius: 10px;
+	margin-bottom: 100px;
+}
