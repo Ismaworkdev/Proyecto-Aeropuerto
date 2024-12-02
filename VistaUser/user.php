@@ -55,21 +55,16 @@ include("../funciones/funciones_bd.php");
                         <h3 class="card-title h5">Reservar Vuelos Disponibles</h3>
                     </div>
                     <div class="card-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="destination" class="form-label">Destino</label>
-                                <input type="text" class="form-control" id="destination" placeholder="Introduce un destino">
-                            </div>
-                            <div class="mb-3">
-                                <label for="date" class="form-label">Fecha</label>
-                                <input type="date" class="form-control" id="date">
-                            </div>
-                            <div class="mb-3">
-                                <label for="passengers" class="form-label">Número de Pasajeros</label>
-                                <input type="number" class="form-control" id="passengers" placeholder="Introduce el número de pasajeros">
-                            </div>
-                            <button type="submit" class="btn" style="background-color: rgba(117, 149, 252, 255); color: white; width: 100%;">Buscar Vuelos</button>
-                        </form>
+                        <div class="card">
+                        <h4 class="h5">Aeropuerto Origen: </h4>
+                        <h4 class="h5">Aeropuerto Destino: </h4>
+                        <h4 class="h5">Tiempo estimado: </h4>
+                        <h4 class="h5">Precio: </h4>
+                        <h4 class="h5">Fecha: </h4>
+                        <h4 class="h5">Hora: </h4>
+                        <button>Reservar</button>
+
+                        </div>
                     </div>
                 </div>
             </div>
