@@ -22,7 +22,7 @@ include('./funciones/funciones.php');
 <body class="my-login-page">
 	<br>
 	<br>
-	<h1 class="text-center">Aeropuerto Internacional Adolfo Suárez Madrid-Barajas</h1>
+	<h1 class="text-center">Aeropuerto Internacional MORT-JIMENEZ</h1>
 	<section class="h-100">
 		<div class="container h-100">
 			<div class="row justify-content-md-center h-100">
@@ -62,7 +62,7 @@ include('./funciones/funciones.php');
 						</div>
 					</div>
 					<div class="footer">
-						Copyright &copy; 2024 &mdash; Aeropuerto Internacional Adolfo Suárez Madrid-Barajas
+						Copyright &copy; 2024 &mdash; Aeropuerto Internacional MORT-JIMENEZ
 					</div>
 				</div>
 			</div>

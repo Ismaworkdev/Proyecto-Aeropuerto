@@ -1,6 +1,6 @@
 <?php
-include("../funciones/funciones_bd1.php");
-session_start();
+include("../funciones/funciones_bd.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,7 +1,7 @@
 <?php
-session_start();
 
-include('../funciones/funciones_bd1.php');
+
+include('../funciones/funciones_bd.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = trim($_POST['nom']);

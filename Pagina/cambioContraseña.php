@@ -1,7 +1,7 @@
 <?php
-include("../funciones/funciones_bd1.php");
+include("../funciones/funciones_bd.php");
 
-session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuarioAntiguo = $_POST['usu_actual'];
@@ -53,7 +53,7 @@ if (isset($_SESSION['error'])) {
 
                     <div class="mb-3">
                         <label for="usuarioAntiguo" class="form-label">Usuario</label>
-                        <input type="user" class="form-control" id="usuarioAntiguo" name="usu_actual" value="<?php print $_SESSION["user"] ?>" required>
+                        <input type="user" class="form-control" id="usuarioAntiguo" name="usu_actual" value="<?php echo isset($_SESSION["user"]) && !empty($_SESSION["user"]) ? $_SESSION["user"] : ''; ?>" required>
 
                     </div>
                     <div class="mb-3">

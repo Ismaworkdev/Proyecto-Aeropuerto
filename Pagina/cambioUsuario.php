@@ -1,37 +1,37 @@
 <?php
-    session_start();
+session_start();
 
-    include("../funciones/funciones_bd1.php");
-    
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $usuarioActual = $_POST['usuario_actual'];
-        $contrasena = $_POST['contrasena'];
-        $nuevoUsuario = $_POST['nuevo_usuario'];
-        $repetirUsuario = $_POST['repetir_usuario'];
-    
-        if ($nuevoUsuario === $repetirUsuario) {
-            if (cambiarUsuario($usuarioActual, $contrasena, $nuevoUsuario)) {
-                $_SESSION['exito'] = "Nombre de usuario cambiado con éxito.";
-                header('Location: usuarioActualizado.php');
-                exit;
-            } else {
-                $_SESSION['error'] = 'El usuario actual o la contraseña son incorrectos.';
-                header('Location: cambioUsuario.php');
-                exit;
-            }
+include("../funciones/funciones_bd.php");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $usuarioActual = $_POST['usuario_actual'];
+    $contrasena = $_POST['contrasena'];
+    $nuevoUsuario = $_POST['nuevo_usuario'];
+    $repetirUsuario = $_POST['repetir_usuario'];
+
+    if ($nuevoUsuario === $repetirUsuario) {
+        if (cambiarUsuario($usuarioActual, $contrasena, $nuevoUsuario)) {
+            $_SESSION['exito'] = "Nombre de usuario cambiado con éxito.";
+            header('Location: usuarioActualizado.php');
+            exit;
         } else {
-            $_SESSION['error'] = 'Los nuevos nombres de usuario no coinciden.';
+            $_SESSION['error'] = 'El usuario actual o la contraseña son incorrectos.';
             header('Location: cambioUsuario.php');
             exit;
         }
+    } else {
+        $_SESSION['error'] = 'Los nuevos nombres de usuario no coinciden.';
+        header('Location: cambioUsuario.php');
+        exit;
     }
+}
 ?>
 
 <?php
-     if (isset($_SESSION['error'])) {
-        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
-        unset($_SESSION['error']);
-    }               
+if (isset($_SESSION['error'])) {
+    echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
+    unset($_SESSION['error']);
+}
 ?>
 
 
@@ -39,12 +39,14 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambiar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="row">
@@ -88,4 +90,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
