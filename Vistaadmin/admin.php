@@ -1,3 +1,6 @@
+<?php
+include('../funciones/funciones_bd.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +19,7 @@
     <!-- Header -->
     <header class="text-white text-center py-4 mb-4" style="background-color: rgba(117, 149, 252, 255); ">
         <img src="../img/logo.png" alt="Logo" class="img-fluid mb-3" style="max-width: 150px;">
-        <h1 class="h3 mb-2">Bienvenido, <?php session_start();
+        <h1 class="h3 mb-2">Bienvenido, <?php
                                         print $_SESSION["user"] ?></h1>
         <h2 class="h5">Panel de Gestión de Vuelos</h2>
 
@@ -37,39 +40,40 @@
                 <div class="card shadow-sm" style="border-color: rgba(117, 149, 252, 255);">
                     <div class="card-body">
                         <h4 class="card-title" style="color: rgba(117, 149, 252, 255);">Crear Vuelo</h4>
-                        <form method="POST" action="/crear_vuelo">
+                        <form method="POST" action="">
                             <div class="form-group">
                                 <label for="empresa">Empresa</label>
-                                <input id="empresa" type="text" class="form-control" name="empresa" placeholder="Nombre de la empresa" required>
+                                <input id="empresa" type="text" class="form-control" name="empresa" placeholder="Nombre de la empresa">
                             </div>
                             <div class="form-group">
                                 <label for="origen">Aeropuerto de Origen</label>
-                                <input id="origen" type="text" class="form-control" name="aeropuerto_origen" placeholder="Ejemplo: Aeropuerto Madrid-Barajas" required>
+                                <input id="origen" type="text" class="form-control" name="aeropuerto_origen" placeholder="Ejemplo: Aeropuerto Madrid-Barajas">
                             </div>
                             <div class="form-group">
                                 <label for="destino">Aeropuerto de Destino</label>
-                                <input id="destino" type="text" class="form-control" name="aeropuerto_destino" placeholder="Ejemplo: Aeropuerto Barcelona-El Prat" required>
+                                <input id="destino" type="text" class="form-control" name="aeropuerto_destino" placeholder="Ejemplo: Aeropuerto Barcelona-El Prat">
                             </div>
                             <div class="form-group">
                                 <label for="tiempo">Tiempo Estimado (hh:mm:ss)</label>
-                                <input id="tiempo" type="time" step="1" class="form-control" name="tiempo_estimado" required>
+                                <input id="tiempo" type="time" step="1" class="form-control" name="tiempo_estimado">
                             </div>
                             <div class="form-group">
                                 <label for="max_pasajeros">Máx. Pasajeros (máx. 100)</label>
-                                <input id="max_pasajeros" type="number" class="form-control" name="max_pasajeros" max="100" required>
+                                <input id="max_pasajeros" type="number" class="form-control" name="max_pasajeros" max="100">
                             </div>
                             <div class="form-group">
                                 <label for="precio">Precio (€)</label>
-                                <input id="precio" type="number" step="0.01" class="form-control" name="precio" required>
+                                <input id="precio" type="number" step="0.01" class="form-control" name="precio">
                             </div>
                             <div class="form-group">
                                 <label for="fecha">Fecha</label>
-                                <input id="fecha" type="date" class="form-control" name="fecha" required>
+                                <input id="fecha" type="date" class="form-control" name="fecha">
                             </div>
                             <div class="form-group">
                                 <label for="hora">Hora</label>
-                                <input id="hora" type="time" class="form-control" name="hora" required>
+                                <input id="hora" type="time" class="form-control" name="hora">
                             </div>
+                            <?php errores() ?>
                             <button type="submit" class="btn" style="background-color: rgba(117, 149, 252, 255); color: white; width: 100%;">Crear Vuelo</button>
                         </form>
                     </div>
