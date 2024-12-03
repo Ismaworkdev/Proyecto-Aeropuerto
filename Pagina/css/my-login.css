@@ -124,3 +124,15 @@ body.my-login-page {
 	border-radius: 10px;
 	margin-bottom: 100px;
 }
+
+.cards-vuelos{
+	margin-bottom: 30px;
+	padding: 10px;
+}
+
+.strong{
+	color: rgba(117, 149, 252, 255);	
+}
+.vuelos-disponibles{
+	margin-bottom: 20px;
+}

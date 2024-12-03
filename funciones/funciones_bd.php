@@ -153,3 +153,32 @@ function cambiarUsuario($usuarioAntiguo, $contrasena, $usuarioNuevo)
 
     return false;
 }
+
+function correo($conexion, $nombreUsuario) {
+
+    $sql = "SELECT email FROM usuarios WHERE nombre = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("s", $nombreUsuario);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $email = $resultado->fetch_assoc()['email'];
+    $stmt->close();
+    
+    return $email;
+
+}
+
+
+function obtenerVuelosDisponibles($conexion) {
+    $sql = "SELECT aeropuerto_origen, aeropuerto_destino, tiempo_estimado, precio, fecha, hora FROM vuelos";
+    $resultado = $conexion->query($sql);
+
+    if ($resultado->num_rows > 0) {
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    } else {
+        return [];
+    }
+}
+
+
+
