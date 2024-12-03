@@ -124,3 +124,42 @@ body.my-login-page {
 	border-radius: 10px;
 	margin-bottom: 100px;
 }
+
+
+
+
+
+.card-header {
+	background-color: #007bff !important;
+	color: white;
+	font-size: 1.25rem;
+}
+
+.card-bodyy {
+	padding: 10px;
+	background-color: #f8f9fa;
+	display: flex;
+	justify-content: space-between;
+}
+
+.card-title {
+	align-items: center;
+	font-weight: bold;
+	font-size: 1.5rem;
+	justify-content: center;
+	display: flex;
+}
+
+.card-text {
+	font-size: 1.1rem;
+}
+
+.card-text span {
+	font-weight: bold;
+}
+
+.card-body-div {
+	align-items: center;
+	text-align: start;
+
+}

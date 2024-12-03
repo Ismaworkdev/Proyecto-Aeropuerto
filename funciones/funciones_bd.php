@@ -244,3 +244,53 @@ function insertVuelo($empresa, $aeropuerto_origen, $aeropuerto_destino, $max_pas
         //echo "Error al insertar el vuelo.";
     }
 }
+
+
+//
+function mostrarVuelos()
+{
+    global $pdo;
+    $stmt = $pdo->query("SELECT id, empresa, aeropuerto_origen, aeropuerto_destino, tiempo_estimado, precio, fecha, hora FROM vuelos");
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $id = $row['id'];
+        $empresa = $row['empresa'];
+        $Aero_origen = $row['aeropuerto_origen'];
+        $Aero_destino = $row['aeropuerto_destino'];
+        $tiempo_estimado = $row['tiempo_estimado'];
+        $precio = $row['precio'];
+        $fecha = $row['fecha'];
+        $hora = $row['hora'];
+
+        echo '
+       
+                <h5 class="card-title"><span id="empresa">Vuelo ' . $id . ' de ' . $empresa . '</span></h5>
+                <div class="card-body">
+                    <div class="card-body-div">
+                        <p class="card-text">Salida: <span id="aeropuerto-salida">' . $Aero_origen . '</span></p>
+                        <p class="card-text">Llegada: <span id="aeropuerto-llegada">' . $Aero_destino . '</span></p>
+                        <p class="card-text">Precio: <span id="precio">' . $precio . ' € </span></p>
+                    </div>
+                    <div class="card-body-div">
+                        <p class="card-text">Fecha y Hora: <span id="fecha-hora">' . $fecha . ' : ' . $hora . '</span></p>
+                        <p class="card-text">Tiempo Estimado: <span id="tiempo-estimado">' . $tiempo_estimado . ' horas</span></p>
+                    </div>
+                </div>
+          
+        <br><br>';
+    }
+}
+
+//borrar 
+function borrarvuelo()
+{
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        if (!empty($_POST[' vuelo_id'])) {
+            print "bien";
+        } else {
+            print "no";
+        }
+    }
+}
+borrarvuelo();

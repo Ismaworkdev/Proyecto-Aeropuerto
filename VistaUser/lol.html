@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de Vuelo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .card-body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            justify-content: center;
+            display: flex;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+        }
+
+        .card-text span {
+            font-weight: bold;
+        }
+
+        .card-body-div {
+            align-items: center;
+            text-align: start;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-plane"></i> Información de Vuelo
+            </div>
+            <h5 class="card-title"><span id="empresa">Vuelo 155 de Airbus</span></h5>
+            <div class="card-body">
+
+                <div class="card-body-div">
+
+                    <p class="card-text">Salida: <span id="aeropuerto-salida">Madrid-Barajas</span></p>
+                    <p class="card-text">Llegada: <span id="aeropuerto-llegada">Barcelona-El Prat</span></p>
+                    <p class="card-text">Precio: <span id="precio">€120</span></p>
+                </div>
+                <div class="card-body-div">
+                    <p class="card-text">Fecha y Hora: <span id="fecha-hora">2024-12-03 15:00</span></p>
+                    <p class="card-text">Tiempo Estimado: <span id="tiempo-estimado">2 horas</span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

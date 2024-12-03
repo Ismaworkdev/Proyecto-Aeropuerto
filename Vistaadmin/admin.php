@@ -9,6 +9,9 @@ include('../funciones/funciones_bd.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Aerolíneas Admin">
     <title>Panel de Administrador - Vuelos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Pagina/css/my-login.css">
     <link rel="stylesheet" href="../Pagina/css/my-login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -35,6 +38,19 @@ include('../funciones/funciones_bd.php');
     <!-- Form Sections -->
     <main class="container my-5">
         <div class="row">
+
+            <!-- Ver Vuelos -->
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-plane"></i> Información de Vuelos
+                    </div>
+                    <?php mostrarvuelos() ?>
+                </div>
+            </div>
+
+
+
             <!-- Crear Vuelos -->
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card shadow-sm" style="border-color: rgba(117, 149, 252, 255);">
@@ -80,30 +96,12 @@ include('../funciones/funciones_bd.php');
                 </div>
             </div>
 
-            <!-- Ver Vuelos -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card shadow-sm" style="border-color: rgba(117, 149, 252, 255);">
-                    <div class="card-body">
-                        <h4 class="card-title" style="color: rgba(117, 149, 252, 255);">Buscar Vuelos</h4>
-                        <form method="post" action="">
-                            <div class="form-group">
-                                <label for="criterio">Buscar por:</label>
-                                <select id="criterio" class="form-control" name="criterio" required>
-                                    <option value="empresa">Empresa</option>
-                                    <option value="aeropuerto_origen">Aeropuerto de Origen</option>
-                                    <option value="aeropuerto_destino">Aeropuerto de Destino</option>
-                                    <option value="fecha">Fecha</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="valor">Valor</label>
-                                <input id="valor" type="text" class="form-control" name="valor" placeholder="Introduce el valor de búsqueda" required>
-                            </div>
-                            <button type="submit" class="btn" style="background-color: rgba(117, 149, 252, 255); color: white; width: 100%;">Buscar Vuelos</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
+
+
+
+
+
 
             <!-- Eliminar Vuelo -->
             <div class="col-lg-4 col-md-6 mb-4">
@@ -113,19 +111,21 @@ include('../funciones/funciones_bd.php');
                         <form method="post" action="">
                             <div class="form-group">
                                 <label for="vuelo_id">ID del Vuelo</label>
-                                <input id="vuelo_id" type="number" class="form-control" name="vuelo_id" placeholder="Introduce el ID del vuelo" required>
+                                <input id="vuelo_id" type="number" class="form-control" name="vuelo_id" placeholder="Introduce el ID del vuelo">
                             </div>
                             <button type="submit" class="btn btn-danger btn-block">Eliminar Vuelo</button>
                         </form>
                     </div>
                 </div>
             </div>
+
         </div>
 
 
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
