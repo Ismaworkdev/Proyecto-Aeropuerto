@@ -9,7 +9,7 @@ function conexion()
 {
     global $pdo;
     try {
-        $pdo = new PDO('mysql:host=localhost:3307;dbname=proyecto-aeropuerto', 'root', '');
+        $pdo = new PDO('mysql:host=localhost:3306;dbname=proyecto-aeropuerto', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec('SET NAMES "utf8"');
     } catch (PDOException $e) {
@@ -290,16 +290,16 @@ function mostrarVuelos()
 
         echo '
        
-                <h5 class="card-title"><span id="empresa">Vuelo ' . $id . ' de ' . $empresa . '</span></h5>
+                <h5 class="card-title" style="color:rgba(117, 149, 252, 255)"><span id="empresa">Vuelo ' . $id . ' de ' . $empresa . '</span></h5>
                 <div class="card-body">
                     <div class="card-body-div">
-                        <p class="card-text">Salida: <span id="aeropuerto-salida">' . $Aero_origen . '</span></p>
-                        <p class="card-text">Llegada: <span id="aeropuerto-llegada">' . $Aero_destino . '</span></p>
-                        <p class="card-text">Precio: <span id="precio">' . $precio . ' € </span></p>
+                        <p class="card-text" style="color:rgba(117, 149, 252, 255)">Salida: <span id="aeropuerto-salida">' . $Aero_origen . '</span></p>
+                        <p class="card-text" style="color:rgba(117, 149, 252, 255)">Llegada: <span id="aeropuerto-llegada">' . $Aero_destino . '</span></p>
+                        <p class="card-text" style="color:rgba(117, 149, 252, 255)">Precio: <span id="precio">' . $precio . ' € </span></p>
                     </div>
                     <div class="card-body-div">
-                        <p class="card-text">Fecha y Hora: <span id="fecha-hora">' . $fecha . ' : ' . $hora . '</span></p>
-                        <p class="card-text">Tiempo Estimado: <span id="tiempo-estimado">' . $tiempo_estimado . ' horas</span></p>
+                        <p class="card-text" style="color:rgba(117, 149, 252, 255)">Fecha y Hora: <span id="fecha-hora">' . $fecha . ' : ' . $hora . '</span></p>
+                        <p class="card-text" style="color:rgba(117, 149, 252, 255)">Tiempo Estimado: <span id="tiempo-estimado">' . $tiempo_estimado . ' horas</span></p>
                     </div>
                 </div>
           
@@ -316,7 +316,6 @@ function borrarvuelo()
         if (!empty($_POST[' vuelo_id'])) {
             print "bien";
         } else {
-            print "no";
         }
     }
 }

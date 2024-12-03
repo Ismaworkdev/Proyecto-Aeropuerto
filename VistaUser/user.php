@@ -82,7 +82,7 @@ if (isset($_POST['eliminar'])) {
 
         <nav class="nav__cambio">
             <ul class="ul__cambio">
-                <li class="li__cambio"><a class="button__cambio" href="../Pagina/cambioContraseña.php">Cambiar contraseña</a></li>
+                <li class="li__cambio"><a class="button__cambio" style="color:rgba(117, 149, 252, 255);" href="../Pagina/cambioContraseña.php">Cambiar contraseña</a></li>
             </ul>
         </nav>
     </header>
