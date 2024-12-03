@@ -163,3 +163,17 @@ body.my-login-page {
 	text-align: start;
 
 }
+
+.cards-vuelos {
+	margin-bottom: 30px;
+	padding: 10px;
+}
+
+.strong {
+	color: rgba(117, 149, 252, 255);
+}
+
+.vuelos-disponibles {
+	margin-bottom: 20px;
+
+}
