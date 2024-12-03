@@ -90,7 +90,7 @@ include('../funciones/funciones_bd.php');
                                 <input id="hora" type="time" class="form-control" name="hora">
                             </div>
                             <?php errores() ?>
-                            <button type="submit" class="btn" style="background-color: rgba(117, 149, 252, 255); color: white; width: 100%;">Crear Vuelo</button>
+                            <button type="submit" name="submitcrearvuelo" class="btn" style="background-color: rgba(117, 149, 252, 255); color: white; width: 100%;">Crear Vuelo</button>
                         </form>
                     </div>
                 </div>
@@ -111,16 +111,16 @@ include('../funciones/funciones_bd.php');
                         <form method="post" action="">
                             <div class="form-group">
                                 <label for="vuelo_id">ID del Vuelo</label>
-                                <input id="vuelo_id" type="number" class="form-control" name="vuelo_id" placeholder="Introduce el ID del vuelo">
+                                <input id="vuelo_id" type="number" class="form-control" name="vuelo_id" placeholder="Introduce el ID del vuelo" value="<?php echo isset($_POST['vuelo_id']) && !empty($_POST['vuelo_id']) ? $_POST['vuelo_id'] : ''; ?>">
                             </div>
-                            <button type="submit" class="btn btn-danger btn-block">Eliminar Vuelo</button>
+                            <?php erroreseliminar() ?>
+                            <button name="submiteliminarvuelo" type="submit" class="btn btn-danger btn-block">Eliminar Vuelo</button>
                         </form>
                     </div>
                 </div>
             </div>
 
         </div>
-
 
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

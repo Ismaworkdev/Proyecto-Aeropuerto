@@ -9,7 +9,7 @@ function conexion()
 {
     global $pdo;
     try {
-        $pdo = new PDO('mysql:host=localhost:3307;dbname=proyecto-aeropuerto', 'root', '');
+        $pdo = new PDO('mysql:host=localhost:3306;dbname=proyecto-aeropuerto', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec('SET NAMES "utf8"');
     } catch (PDOException $e) {
@@ -156,34 +156,38 @@ function cambiarUsuario($usuarioAntiguo, $contrasena, $usuarioNuevo)
 
 
 //admin
-$bacio = false;
-$menor = false;
+$bacio = null;
+$menor = null;
 function crearVuelo()
 {
     global  $bacio;
     global $menor;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        if (!empty($_POST['empresa']) && !empty($_POST['aeropuerto_origen']) && !empty($_POST['aeropuerto_destino']) && !empty($_POST['tiempo_estimado']) && !empty($_POST['max_pasajeros']) && !empty($_POST['precio']) && !empty($_POST['fecha']) && !empty($_POST['hora'])) {
-            $empresa = $_POST['empresa'];
-            $aeropuerto_origen = $_POST['aeropuerto_origen'];
-            $aeropuerto_destino = $_POST['aeropuerto_destino'];
-            $max_pasajeros = $_POST['max_pasajeros'];
-            $tiempo_estimado = $_POST['tiempo_estimado'];
-            $precio = $_POST['precio'];
-            $fecha = $_POST['fecha'];
-            $hora = $_POST['hora'];
+        if (isset($_POST['submitcrearvuelo'])) {
 
 
-            $fecha_actual = date('Y-m-d');
+            if (!empty($_POST['empresa']) && !empty($_POST['aeropuerto_origen']) && !empty($_POST['aeropuerto_destino']) && !empty($_POST['tiempo_estimado']) && !empty($_POST['max_pasajeros']) && !empty($_POST['precio']) && !empty($_POST['fecha']) && !empty($_POST['hora'])) {
+                $empresa = $_POST['empresa'];
+                $aeropuerto_origen = $_POST['aeropuerto_origen'];
+                $aeropuerto_destino = $_POST['aeropuerto_destino'];
+                $max_pasajeros = $_POST['max_pasajeros'];
+                $tiempo_estimado = $_POST['tiempo_estimado'];
+                $precio = $_POST['precio'];
+                $fecha = $_POST['fecha'];
+                $hora = $_POST['hora'];
 
-            if (strtotime($fecha) < strtotime($fecha_actual)) {
-                $menor = true;
+
+                $fecha_actual = date('Y-m-d');
+                $bacio = false;
+                if (strtotime($fecha) < strtotime($fecha_actual)) {
+                    $menor = true;
+                } else {
+                    $menor = false;
+                    insertvuelo($empresa, $aeropuerto_origen, $aeropuerto_destino, $max_pasajeros, $tiempo_estimado, $precio, $fecha, $hora);
+                }
             } else {
-                insertvuelo($empresa, $aeropuerto_origen, $aeropuerto_destino, $max_pasajeros, $tiempo_estimado, $precio, $fecha, $hora);
+                $bacio = true;
             }
-        } else {
-            $bacio = true;
         }
     }
     $empresa = null;
@@ -308,16 +312,64 @@ function mostrarVuelos()
 }
 
 //borrar 
+$existe = null;
+$vacio = null;
 function borrarvuelo()
 {
-
+    global  $existe;
+    global   $vacio;
+    global $pdo;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['submiteliminarvuelo'])) {
+            if (!empty($_POST[' vuelo_id'])) {
+                $ide = $_POST[' vuelo_id'];
+                $vacio = true;
 
-        if (!empty($_POST[' vuelo_id'])) {
-            print "bien";
-        } else {
-            print "no";
+
+
+
+                try {
+                    $stmt = $pdo->prepare("SELECT id FROM vuelos WHERE id = :id ");
+                    $stmt->bindParam(':id', $ide);
+
+                    $stmt->execute();
+
+                    if ($stmt->rowCount() > 0) {
+                        $existe = true;
+                        // $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                        //$rol = $row['rol'];
+
+                    } else {
+                        $existe = false;
+                    }
+                } catch (PDOException $e) {
+                    echo 'Error en la consulta: ' . $e->getMessage();
+                }
+
+                //fin consulta 
+            } else {
+                $vacio = false;
+            }
         }
     }
 }
 borrarvuelo();
+function erroreseliminar()
+{
+    global  $existe;
+    global   $vacio;
+    if ($existe != null) {
+        if ($existe) {
+            print "<span class='error'>  </span>";
+        } else {
+            print "<span class='error'> ID de vuelo inexistente </span>";
+        }
+    }
+    if ($vacio != null) {
+        if ($vacio) {
+            print "<span class='error'> Campo vacio , rellene campo </span>";
+        } else {
+            print "<span class='error'>  </span>";
+        }
+    }
+}
