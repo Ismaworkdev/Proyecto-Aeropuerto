@@ -9,7 +9,7 @@ function conexion()
 {
     global $pdo;
     try {
-        $pdo = new PDO('mysql:host=localhost:3306;dbname=proyecto-aeropuerto', 'root', '');
+        $pdo = new PDO('mysql:host=localhost:3307;dbname=proyecto-aeropuerto', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec('SET NAMES "utf8"');
     } catch (PDOException $e) {
@@ -189,30 +189,35 @@ function crearVuelo()
                 $bacio = true;
             }
         }
+
+        $_POST['empresa'] = null;
+        $_POST['aeropuerto_origen'] = null;
+        $_POST['aeropuerto_destino'] = null;
+        $_POST['max_pasajeros'] = null;
+        $_POST['tiempo_estimado'] = null;
+        $_POST['precio'] = null;
+        $_POST['fecha'] = null;
+        $_POST['hora'] = null;
     }
-    $empresa = null;
-    $aeropuerto_origen = null;
-    $aeropuerto_destino = null;
-    $max_pasajeros = null;
-    $tiempo_estimado = null;
-    $precio = null;
-    $fecha = null;
-    $hora = null;
 }
 crearVuelo();
 function errores()
 {
     global  $bacio;
     global $menor;
-    if (!$bacio) {
-        print "<span class='error'></span>";
-    } else {
-        print "<span class='error'>Formulario incompleto , completa todos los campos </span>";
+    if ($bacio !== null) {
+        if ($bacio) {
+            print "<span class='error'>Formulario incompleto , completa todos los campos </span>";
+        } else {
+            print "<span class='error'></span>";
+        }
     }
-    if (!$menor) {
-        print "<span class='error'></span>";
-    } else {
-        print "<span class='error'> Fecha inválida, pon una fecha correcta.</span>";
+    if ($menor !== null) {
+        if ($menor) {
+            print "<span class='error'> Fecha inválida, pon una fecha correcta.</span>";
+        } else {
+            print "<span class='error'></span>";
+        }
     }
 }
 
@@ -321,9 +326,9 @@ function borrarvuelo()
     global $pdo;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['submiteliminarvuelo'])) {
-            if (!empty($_POST[' vuelo_id'])) {
-                $ide = $_POST[' vuelo_id'];
-                $vacio = true;
+            if (!empty($_POST['vuelo_id'])) {
+                $ide = $_POST['vuelo_id'];
+                $vacio = false;
 
 
 
@@ -336,10 +341,27 @@ function borrarvuelo()
 
                     if ($stmt->rowCount() > 0) {
                         $existe = true;
+
                         // $row = $stmt->fetch(PDO::FETCH_ASSOC);
                         //$rol = $row['rol'];
+                        try {
+                            $stmt = $pdo->prepare("DELETE FROM viajes WHERE vuelo_id = :id");
+                            $stmt->bindParam(':id', $ide);
 
+                            $stmt->execute();
+                        } catch (\Throwable $e) {
+                            echo 'Error en la consulta: ' . $e->getMessage();
+                        }
+                        try {
+                            $stmt = $pdo->prepare("DELETE FROM vuelos WHERE id = :id");
+                            $stmt->bindParam(':id', $ide);
+
+                            $stmt->execute();
+                        } catch (\Throwable $e) {
+                            echo 'Error en la consulta: ' . $e->getMessage();
+                        }
                     } else {
+
                         $existe = false;
                     }
                 } catch (PDOException $e) {
@@ -348,12 +370,7 @@ function borrarvuelo()
 
                 //fin consulta 
             } else {
-                $vacio = false;
-            }
-
-            if (!empty($_POST[' vuelo_id'])) {
-                print "bien";
-            } else {
+                $vacio = true;
             }
         }
     }
@@ -363,14 +380,16 @@ function erroreseliminar()
 {
     global  $existe;
     global   $vacio;
-    if ($existe != null) {
+
+    if ($existe !== null) {
+
         if ($existe) {
             print "<span class='error'>  </span>";
         } else {
             print "<span class='error'> ID de vuelo inexistente </span>";
         }
     }
-    if ($vacio != null) {
+    if ($vacio !== null) {
         if ($vacio) {
             print "<span class='error'> Campo vacio , rellene campo </span>";
         } else {

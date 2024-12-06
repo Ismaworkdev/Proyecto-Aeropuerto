@@ -14,16 +14,16 @@ $vuelos = obtenerVuelosDisponibles($conexion);
 
 
 if (!isset($_SESSION['reservas'][$_SESSION['user']])) {
-    $_SESSION['reservas'][$_SESSION['user']] = array();  
+    $_SESSION['reservas'][$_SESSION['user']] = array();
 }
 
-$vuelosReservados = $_SESSION['reservas'][$_SESSION['user']];  
+$vuelosReservados = $_SESSION['reservas'][$_SESSION['user']];
 
 
 
 if (isset($_SESSION['mensaje'])) {
     echo "<div class='alert " . $_SESSION['mensaje']['tipo'] . "'>" . $_SESSION['mensaje']['texto'] . "</div>";
-    unset($_SESSION['mensaje']);  
+    unset($_SESSION['mensaje']);
 }
 
 
@@ -31,10 +31,10 @@ if (isset($_SESSION['mensaje'])) {
 if (isset($_POST['reservar'])) {
     if (isset($_POST['vuelo_id']) && is_numeric($_POST['vuelo_id'])) {
         $vuelo_id = intval($_POST['vuelo_id']);
-        $usuario = $_SESSION['user'];  
+        $usuario = $_SESSION['user'];
 
         if (!in_array($vuelo_id, $_SESSION['reservas'][$usuario])) {
-            $_SESSION['reservas'][$usuario][] = $vuelo_id;  
+            $_SESSION['reservas'][$usuario][] = $vuelo_id;
             $_SESSION['mensaje'] = array('tipo' => 'alert-success', 'texto' => "Vuelo reservado con éxito.");
         } else {
             $_SESSION['mensaje'] = array('tipo' => 'alert-danger', 'texto' => "Este vuelo ya ha sido reservado.");
@@ -49,7 +49,7 @@ if (isset($_POST['reservar'])) {
 if (isset($_POST['eliminar'])) {
     if (isset($_POST['eliminar_id']) && is_numeric($_POST['eliminar_id'])) {
         $vuelo_id = intval($_POST['eliminar_id']);
-        $usuario = $_SESSION['user'];  
+        $usuario = $_SESSION['user'];
 
         if (in_array($vuelo_id, $_SESSION['reservas'][$usuario])) {
             $_SESSION['reservas'][$usuario] = array_diff($_SESSION['reservas'][$usuario], array($vuelo_id));
@@ -97,35 +97,35 @@ if (isset($_POST['eliminar'])) {
                     </div>
                     <div class="card-body">
                         <?php
-                            if (count($vuelosReservados) > 0) {
-                                foreach ($vuelosReservados as $vuelo_id) {
-                                    
-                                    $consulta = "SELECT * FROM vuelos WHERE id = $vuelo_id";
-                                    $resultado = $conexion->query($consulta);
-                                    $vuelo = $resultado->fetch_assoc();
-                        ?>
-                        
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-text" style="color:rgba(117, 149, 252, 255);">Vuelo a <?php echo $vuelo['aeropuerto_destino']; ?></h5>
-                                <p class="card-text">Fecha: <?php echo $vuelo['fecha']; ?>, Hora: <?php echo $vuelo['hora']; ?></p>
+                        if (count($vuelosReservados) > 0) {
+                            foreach ($vuelosReservados as $vuelo_id) {
 
-                                <form action="user.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="eliminar_id" value="<?php echo $vuelo_id; ?>">
-                                    <button type="submit" name="eliminar" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-                        </div>
-                        
+                                $consulta = "SELECT * FROM vuelos WHERE id = $vuelo_id";
+                                $resultado = $conexion->query($consulta);
+                                $vuelo = $resultado->fetch_assoc();
+                        ?>
+
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-text" style="color:rgba(117, 149, 252, 255);">Vuelo a <?php echo $vuelo['aeropuerto_destino']; ?></h5>
+                                        <p class="card-text">Fecha: <?php echo $vuelo['fecha']; ?>, Hora: <?php echo $vuelo['hora']; ?></p>
+
+                                        <form action="user.php" method="POST" style="display:inline;">
+                                            <input type="hidden" name="eliminar_id" value="<?php echo $vuelo_id; ?>">
+                                            <button type="submit" name="eliminar" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </div>
+
                         <?php
-                                }
-                            } else {
-                                echo "<p>No has reservado vuelos aún.</p>";
                             }
+                        } else {
+                            echo "<p>No has reservado vuelos aún.</p>";
+                        }
                         ?>
                     </div>
+                </div>
             </div>
-        </div>
 
             <div class="col-md-6">
                 <div class="card vuelos-disponibles" style="border: 2px solid rgba(117, 149, 252, 255);">
@@ -134,12 +134,12 @@ if (isset($_POST['eliminar'])) {
                     </div>
                     <div class="card-body">
                         <?php
-                        $consulta = "SELECT * FROM vuelos";  
+                        $consulta = "SELECT * FROM vuelos";
                         $resultado = $conexion->query($consulta);
 
                         if ($resultado->num_rows > 0) {
                             while ($vuelo = $resultado->fetch_assoc()) {
-                                  
+
                         ?>
                                 <div class="card cards-vuelos">
                                     <p><strong class="strong"> Aeropuerto Origen:</strong> <?php echo $vuelo['aeropuerto_origen']; ?></p>
@@ -166,6 +166,7 @@ if (isset($_POST['eliminar'])) {
 
         </div>
     </main>
+    <script src="../Pagina/js/reenvio.js"></script>
 </body>
 
 </html>
