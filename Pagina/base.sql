@@ -10,7 +10,7 @@ CREATE TABLE vuelos (
     aeropuerto_origen VARCHAR(100),
     aeropuerto_destino VARCHAR(100),
     tiempo_estimado TIME,
-    max_pasajeros INT CHECK (max_pasajeros <= 100),
+    max_pasajeros INT ,
     precio DECIMAL(10, 2),
     fecha DATE,
     hora TIME
@@ -27,7 +27,7 @@ CREATE TABLE viajes (
 INSERT INTO usuarios ( nombre, contraseña, rol, email) VALUES
 ( 'admin', 'admin', 'A', 'admin.admin@gmail.com'),
 ( 'juanperez', 'ahh', 'B', 'juan.perez@gmail.com'),
-( 'mariagomez', 'lol', 'B', 'maria.gomez@gmail.com'),
+( 'lol', 'lol', 'B', 'lol.lol@gmail.com'),
 ( 'carloslopez', 'lol1', 'B', 'carlos.lopez@gmail.com');
 INSERT INTO vuelos (id, empresa, aeropuerto_origen, aeropuerto_destino, tiempo_estimado, max_pasajeros, precio, fecha, hora) VALUES
 (1, 'Iberia', 'Aeropuerto Adolfo Suárez Madrid-Barajas', 'Aeropuerto Josep Tarradellas Barcelona-El Prat', '02:00:00', 67, 60.00, '2024-10-22', '07:14:00'),
@@ -35,5 +35,5 @@ INSERT INTO vuelos (id, empresa, aeropuerto_origen, aeropuerto_destino, tiempo_e
 (3, 'Air France', 'Aeropuerto Adolfo Suárez Madrid-Barajas', 'Aeropuerto Internacional Jorge Chávez Lima, Perú', '01:45:00', 40, 130.00, '2024-10-21', '10:14:00');
 INSERT INTO viajes ( usuario_nombre, vuelo_id) VALUES
 ( 'juanperez', 1),
-( 'mariagomez', 2),
+( 'lol', 2),
 ( 'carloslopez', 3);

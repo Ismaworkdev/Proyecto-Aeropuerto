@@ -1,3 +1,0 @@
-un login de usuarios  que sirva para los dos usuarios 
-un admin creado y varios usuarios el admin 
-la base sera : usuarios , vuelos , 

@@ -1,40 +1,13 @@
 <?php
 
-
+/**
+ * Paigina de registro , se debe poner el nombre un gmail valido y una contraseña 
+ */
 include('../funciones/funciones_bd.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = trim($_POST['nom']);
-    $correo = trim($_POST['gmail']);
-    $password = trim($_POST['passwd']);
-    $rol = trim($_POST['rol']);
-
-    if (strlen($nombre) > 20 || strlen($password) > 20) {
-        $_SESSION['error'] = "El nombre o contraseña  no puede superar los 20 caracteres.";
-
-        exit();
-    } elseif (!empty($nombre) && !empty($correo) && !empty($password) && filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-        if (insertuser($nombre, $correo, $password, $rol)) {
-            $_SESSION['success'] = "Usuario registrado exitosamente.";
-            header("Location: usuarioRegistrado.php");
-            exit();
-        } else {
-            $_SESSION['error'] =  "El usuario o correo ya están registrados.";
-        }
-    } else {
-        $_SESSION['error'] = "Por favor, completa todos los campos correctamente.";
-        header("Location: register.php");
-        exit();
-    }
-}
 ?>
 
-<?php
-if (isset($_SESSION['error'])) {
-    echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
-    unset($_SESSION['error']);
-}
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,19 +50,20 @@ if (isset($_SESSION['error'])) {
                                 </div>
 
                                 <div class="form-group m-0">
-                                    <button type="submit" class="btn btn-primary btn-block registrar">
+                                    <?php insertaerrores() ?>
+                                    <button type="submit" name="registerr" class="btn btn-primary btn-block registrar">
                                         Registrarse
                                     </button>
                                 </div>
                                 <div class="mt-4 text-center">
                                     ¿Ya tienes cuenta? <a href="../index.php">Iniciar sesión</a>
                                 </div>
-                                <input type="hidden" name="rol" value="B">
+
                             </form>
                         </div>
                     </div>
                     <div class="footer">
-                        Copyright &copy; 2017 &mdash; Your Company
+                        Copyright &copy; 2024 &mdash; Aeropuerto Internacional MORT-JIMENEZ
                     </div>
                 </div>
             </div>

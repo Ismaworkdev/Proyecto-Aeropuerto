@@ -1,3 +1,21 @@
+<?php
+//pagina inicial con formulario de inicio . 
+
+//inicio token 
+session_start();
+$session_id = session_id();
+$num_rand = mt_rand(0, 999999999999999);
+$caracteres_random = bin2hex(random_bytes(100000));
+
+$tokenn = $caracteres_random . $num_rand . $session_id;
+$token = hash('sha256', $tokenn);
+$_SESSION['token'] = $token;
+
+//fin token 
+include('./funciones/funciones_bd.php');
+include('./funciones/funciones.php');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,12 +29,7 @@
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="./Pagina/css/my-login.css">
 </head>
-<?php
 
-include('./funciones/funciones_bd.php');
-include('./funciones/funciones.php');
-
-?>
 
 
 <body class="my-login-page">
@@ -44,7 +57,7 @@ include('./funciones/funciones.php');
 								?>
 								<div class="form-group">
 									<label for="password">Contraseña
-										<a href="./Pagina/cambioContraseña.php" class="float-right">
+										<a href="./Pagina/cambiocontraseñasinsession.php" class="float-right">
 											¿Olvidaste tu contraseña?
 										</a>
 									</label>
@@ -58,6 +71,8 @@ include('./funciones/funciones.php');
 								<div class="mt-4 text-center">
 									¿No tienes usuario? <a href="./Pagina/register.php">Crear usuario</a>
 								</div>
+								<input type="hidden" name="token" value="<?php $_SESSION['token']; ?>">
+
 							</form>
 						</div>
 					</div>
